@@ -9,8 +9,12 @@ let app = builder.Build()
 
 // https://github.com/fsharp/fslang-suggestions/issues/1131
 app.Map("/hello", Func<_,_>(fun (ctx:HttpContext) -> task {
-    return Results.Ok("ok")
+    return Results.Ok({|
+        Text = "Hello"
+    |})
 }));
+
+app.MapGet("/", Func<_>(fun () -> "Hello World!")) 
 
 app.Run()
 
